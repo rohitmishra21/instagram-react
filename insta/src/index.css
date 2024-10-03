@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+i{
+    font-size: 25px;
+    cursor: pointer;
+}
+.stores::-webkit-scrollbar{
+    display: none;
+}
+.container::-webkit-scrollbar{
+    display: none;
+}
+.reelBox::-webkit-scrollbar{
+    display: none;
+}
