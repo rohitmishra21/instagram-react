@@ -89,7 +89,7 @@ const Home = () => {
               </div>
               {storyPost.map((info, index) => (
                 <>
-                  <div className="inline-block " key={info.name}>
+                  <div className="inline-block " key={info.index}>
                     <div className="story w-24 h-24 p-1  bg-gradient-to-r from-[#f9ce34] via-[#ee2a7b] to-[#6228d7] rounded-full ">
                       <img
                         src={info.src.large}
@@ -128,7 +128,7 @@ const Home = () => {
                           alt=""
                         />
                       </div>
-                      <h1 className="text-white">rohiy</h1>
+                      <h1 className="text-white">name line 131 home.jsx</h1>
                     </div>
                     <i className="text-white ri-more-2-fill"></i>
                   </div>
