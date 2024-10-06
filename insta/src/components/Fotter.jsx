@@ -12,7 +12,7 @@ const Fotter = () => {
   
   return (
     <>
-     <div className="fotter flex h-[5%] items-center justify-around text-2xl">
+     <div className="fotter flex bg-white h-[5%] items-center justify-around text-2xl">
         <IoMdHome />
         <IoSearchSharp />
         <BiMoviePlay onClick={ShowReel} />
