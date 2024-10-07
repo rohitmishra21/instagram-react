@@ -6,12 +6,11 @@ import { RiSendPlaneFill } from "react-icons/ri";
 import { FaRegBookmark } from "react-icons/fa";
 import { IoMdHeart } from "react-icons/io";
 
-
 const Post = () => {
   const [data, setData] = useState([]);
   const [user, setuser] = useState([]);
-  const [like, setlike] = useState(true)
-  const [addlike, setaddlike] = useState(0)
+  const [like, setlike] = useState(true);
+  const [addlike, setaddlike] = useState(0);
 
   useEffect(() => {
     const API_KEY = `RA53H7u2zrx3syiGC35C0ipC1hHUfN7XAHHZRENK9HPDF4j233UrOXqN`;
@@ -56,13 +55,12 @@ const Post = () => {
   }, []);
 
   function showLike(e) {
-     
-      setlike(false)
-     
-      setaddlike((p) => p+ 1)
-      setTimeout(() => {
-        setlike(true)
-      }, 2000);
+    setlike(false);
+
+    setaddlike((p) => p + 1);
+    setTimeout(() => {
+      setlike(true);
+    }, 1000);
   }
 
   return (
@@ -92,15 +90,18 @@ const Post = () => {
               id="postLike"
               className=" opacity-0 transition-all ease-linear duration-300  absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-7xl text-red-600  ri-heart-fill"
             ></i>
-            <div className="">
-              <div className="w-full bg-[url]  h-[80%]" onDoubleClick={showLike}
-            
+            <div className="relative">
+              <div
+                className="w-full bg-[url]   h-[80%]"
+                onDoubleClick={showLike}
               >
-              <IoMdHeart size={70}   className="text-red-700 transition-all duration-600 ease-linear absolute top-1/2 left-1/2 -translate-y-1/2  -translate-x-1/2"
-               style={{
-                opacity:like ?"0" : "100%"
-               }}
-              />
+                <IoMdHeart
+                  size={70}
+                  className="text-red-700 transition-all duration-600 ease-linear absolute top-1/2 left-1/2 -translate-y-1/2  -translate-x-1/2"
+                  style={{
+                    opacity: like ? "0" : "100%",
+                  }}
+                />
                 <img
                   src={d.src.original}
                   className=" object-cover w-full h-full"

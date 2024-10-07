@@ -55,7 +55,7 @@ const Reel = () => {
     fetchUserImages();
   }, []);
 
-  console.log(reelPost);
+
 
   return (
     <>
@@ -73,7 +73,7 @@ const Reel = () => {
                 onClick={likeReel}
               >
                 <video
-                  className="w-full object-cover object-top h-full"
+                  className="w-full object-center object-cover h-full"
                   autoPlay
                   muted
                   loop
@@ -84,11 +84,11 @@ const Reel = () => {
                   <div className="w-80 h-16 ">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 bg-pink-700 rounded-full overflow-hidden">
-                        {/* <img
+                        <img
                           src={reelPost[index].src.large2x}
                           className="w-full object-cover h-full"
                           alt=""
-                        /> */}
+                        />
                       </div>
                       <h1>{reelPost[index].photographer}</h1>
                       <button className="border-2 border-white/60 px-3 rounded-md text-white font-semibold text-xs py-1">

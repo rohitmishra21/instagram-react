@@ -31,6 +31,8 @@ const Profile = () => {
   const [profile, setProfile] = useState([]);
   const [openPost, setOpenPost] = useState([]);
   const [visibleProfilePost, setvisibleProfilePost] = useState(false);
+  const [activeIcon, setActiveIcon] = useState(null)
+  const [someText, setsomeText] = useState(true)
 
   useEffect(() => {
     const API_KEY = `RA53H7u2zrx3syiGC35C0ipC1hHUfN7XAHHZRENK9HPDF4j233UrOXqN`;
@@ -103,8 +105,8 @@ const Profile = () => {
     }, 3000);
   };
 
-  console.log(profile );
   
+
   return (
     <div className="profile h-[95%]  overflow-y-auto ">
       <div className="top  flex justify-between items-center text-2xl p-2">
@@ -156,13 +158,14 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
       <div
         className="stores   w-full px-2 h-36 whitespace-nowrap py-2 overflow-x-auto overflow-y-hidden"
         onClick={showStory}
       >
         {storyPost.map((info, index) => (
           <>
-            <div className="inline-block " key={info.index}>
+            <div className="inline-block cursor-pointer`" key={info.index}>
               <div className="story w-24 h-24  rounded-full ">
                 <img
                   src={info.src.large}
@@ -178,6 +181,7 @@ const Profile = () => {
           </>
         ))}
       </div>
+
       <div
         className="myStoryContsner"
         style={{
@@ -222,104 +226,91 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
       <div className="flex justify-between px-10 py-2 text-2xl">
-        <MdOutlineViewCompact />
-        <BiMoviePlay />
+        <MdOutlineViewCompact   className={activeIcon ? "opacity-50" : "opacity-100"}
+        
+        />
+        <BiMoviePlay onClick={someText}
+         
+        />
         <BiSolidUserPin />
       </div>
 
       <div className="posts h-[32vh]">
         <div className=" w-full justify-center gap-2 h-full flex flex-wrap">
-          {profile.map((pic, index) => (
-            <>
-              <div
-                key={pic.id}
-                className="h-32 w-28 bg-yellow-500"
-                onClick={targetProfile}
-              >
-                <img
-                  src={pic.src.large}
-                  className="w-full h-full object-cover"
-                  alt=""
-                  id={index}
-                />
-              </div>
-            </>
-          ))}
           {visibleProfilePost ? (
             <>
               <div className="myStory  w-full h-full  top-0 left-0  absolute">
-                {/* <div className="absolute flex flex-col justify-between w-full p-2">
-                   <div
-                    className="loader ease-linear duration-300 transition-all  h-0.5 my-2 bg-black/20"
-                    style={{
-                      width: `${loader}%`,
-                    }}
-                  ></div> 
-                  <div className="flex mt-2 justify-between">
-                    <div className="flex  items-center gap-2">
-                      <div className="w-10 h-10 bg-black rounded-full">
-                        <img
-                          src={openPost}
-                          className="  object-cover  h-full w-full rounded-full"
-                          alt=""
-                        />
-                      </div>
-                      <h1 className="text-white">name line 131 home.jsx</h1>
-                    </div>
-                    <i className="text-white ri-more-2-fill"></i>
-                  </div>
-                </div> */}
-
                 <div className="bg-white h-[95%] w-full 6">
                   <div className="flex items-end gap-3 capitalize font-sans text-2xl">
-                    <IoIosArrowRoundBack size={30} className=" cursor-pointer" onClick={()=> setvisibleProfilePost(false)} />
+                    <IoIosArrowRoundBack
+                      size={30}
+                      className=" cursor-pointer"
+                      onClick={() => setvisibleProfilePost(false)}
+                    />
                     <h1>posts</h1>
                   </div>
                   <div className="inner  py-5 overflow-y-auto h-[95%]">
                     <div className="flex justify-between items-center gap-3">
                       <div className="flex gap-2 items-center">
-                      <div className="w-10 h-10 rounded-full">
-                        <img
-                          src="./img/my.jpg"
-                          className="w-full  h-full object-cover  rounded-full"
-                          alt=""
-                        />
+                        <div className="w-10 h-10 rounded-full">
+                          <img
+                            src="./img/my.jpg"
+                            className="w-full  h-full object-cover  rounded-full"
+                            alt=""
+                          />
+                        </div>
+                        <h1>rohitmishra11_27</h1>
                       </div>
-                      <h1>rohitmishra11_27</h1>
-                      </div>
-                   
+
                       <BsThreeDotsVertical className="text-2xl" />
                     </div>
                     <div className="flex justify-center mt-4 h-[80%]">
-                    <img
-                      className="h-full object-contain py-1  "
-                      src={openPost}
-                      alt=""
-                    />
+                      <img
+                        className="h-full object-contain py-1  "
+                        src={openPost}
+                        alt=""
+                      />
                     </div>
-                   
+
                     <div className="flex gap-1  py-2 text-2xl justify-between px-1 items-center">
                       <div className="flex gap-0.5 items-center">
-                      <FaRegHeart />
-                      <h1 className="likeNum">9</h1>
-                      <FaRegComment className="ml-4" />
-                      <h1>9</h1>
-                      <RiSendPlaneFill className="ml-3" />
-                      <h1>8</h1>
+                        <FaRegHeart />
+                        <h1 className="likeNum">9</h1>
+                        <FaRegComment className="ml-4" />
+                        <h1>9</h1>
+                        <RiSendPlaneFill className="ml-3" />
+                        <h1>8</h1>
                       </div>
-                      
+
                       <div>
-                      <FaRegBookmark className=" text-[22px]" />
+                        <FaRegBookmark className=" text-[22px]" />
+                      </div>
                     </div>
-                    </div>
-                   
                   </div>
                 </div>
               </div>
             </>
           ) : (
-            null
+            <>
+              {profile.map((pic, index) => (
+                <>
+                  <div
+                    key={pic.id}
+                    className="h-32 w-28 bg-yellow-500"
+                    onClick={targetProfile}
+                  >
+                    <img
+                      src={pic.src.large}
+                      className="w-full h-full object-cover"
+                      alt=""
+                      id={index}
+                    />
+                  </div>
+                </>
+              ))}
+            </>
           )}
         </div>
       </div>
