@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { GiBlackHoleBolas } from "react-icons/gi";
 import { CiCamera } from "react-icons/ci";
@@ -6,15 +6,38 @@ import Chat from './Chat';
 
 const Send = ({ back }) => {
   const [openChat, setopenChat] = useState(true);
- 
+  const [profilePic, setProfilePic] = useState([])
   function vapas() {
     back(true);
   }
 
+
+  useEffect(() => {
+    const API_KEY = `RA53H7u2zrx3syiGC35C0ipC1hHUfN7XAHHZRENK9HPDF4j233UrOXqN`;
+
+    async function fetchPostImages() {
+      const response = await fetch(
+        "https://api.pexels.com/v1/search?query=girls&per_page=15&page=1/curated?page=2&per_page=30",
+        {
+          method: "GET",
+          headers: {
+            Authorization: API_KEY,
+          },
+        }
+      );
+      const responseData = await response.json();
+      const imgData = responseData.photos;
+      setProfilePic(imgData);
+    }
+
+    fetchPostImages();
+  }, []);
+
   return (
     <>
       {openChat ? (
-        <div className='w-full h-[95%] '>
+        
+        <div className='inner w-full h-[95%] overflow-y-auto'>
           <div className="top flex text-xl justify-between items-center p-3">
             <div className='flex gap-2 items-center'>
               <FaArrowLeftLong className='cursor-pointer' onClick={vapas} />
@@ -40,15 +63,18 @@ const Send = ({ back }) => {
               Requests
             </button>
           </div>
-          <div className='flex items-center justify-between  cursor-pointer p-3' onClick={() => setopenChat(false)}>
-            <div className='w-12 h-12 bg-sky-800 overflow-hidden rounded-full'>
-                <img className='object-cover w-full h-full' src="https://images.unsplash.com/photo-1724861277998-64d987d50508?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxmZWF0dXJlZC1waG90b3MtZmVlZHwxMDZ8fHxlbnwwfHx8fHw%3D" alt="" />
-            </div>
-            <h1 className='w-60'>
-              instagram_user
-            </h1>
-            <CiCamera size={30} />
-          </div>
+          {profilePic.map((pic)=>(
+             <div key={pic.id} className='flex items-center justify-between  cursor-pointer p-3' onClick={() => setopenChat(false)}>
+             <div className='w-12 h-12 bg-sky-800 overflow-hidden rounded-full'>
+                 <img className='object-cover w-full h-full' src={pic.src.large2x} alt="" />
+             </div>
+             <h1 className='w-60'>
+                {pic.photographer}
+             </h1>
+             <CiCamera size={30} />
+           </div>
+          ))}
+          
        
         </div>
       ) : (

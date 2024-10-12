@@ -17,7 +17,7 @@ const Post = () => {
 
     async function fetchPostImages() {
       const response = await fetch(
-        "https://api.pexels.com/v1/search?query=nature&per_page=15&page=1/curated?page=2&per_page=30",
+        "https://api.pexels.com/v1/search?query=girlsf&per_page=15&page=1/curated?page=2&per_page=30",
         {
           method: "GET",
           headers: {

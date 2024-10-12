@@ -4,10 +4,12 @@ import { FiHeart } from "react-icons/fi";
 import { BiMessageRounded } from "react-icons/bi";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-
+import { FaHeart } from "react-icons/fa";
 const Reel = () => {
   const [reels, setreels] = useState([]);
   const [reelPost, setReelPost] = useState([]);
+  const [like, setlike] = useState(1)
+  const [showHeart, setshowHeart] = useState(false)
   useEffect(() => {
     const API_KEY = `RA53H7u2zrx3syiGC35C0ipC1hHUfN7XAHHZRENK9HPDF4j233UrOXqN`;
 
@@ -31,7 +33,12 @@ const Reel = () => {
   }, []);
 
   function likeReel() {
-    console.log("hii");
+   
+     setlike((p)=>p+1)
+     setshowHeart(true)
+     setTimeout(() => {
+       setshowHeart(false)
+     }, 1000);
   }
 
   useEffect(() => {
@@ -69,15 +76,22 @@ const Reel = () => {
             <>
               <div
                 className="h-full relative  snap-start"
-                key={reel.id}
-                onClick={likeReel}
+                key={reel.video_files[1]}
+                onDoubleClick={likeReel}
               >
+              <div className="heart text-white transition-all duration-300 ease-in-out  absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2"
+                style={{
+                  opacity:showHeart?"1" :"0"
+                }}
+              >
+              <FaHeart size={60}/>
+              </div>
                 <video
                   className="w-full object-center object-cover h-full"
                   autoPlay
                   muted
                   loop
-                  src={reel.video_files[1].link}
+                  src={reel.video_files[0].link}
                 ></video>
                 <h1>{reel.name}</h1>
                 <div className="overlay w-full h-full text-white flex items-end justify-end top-0  absolute">
@@ -99,7 +113,7 @@ const Reel = () => {
                   <div className="h-80 w-14 text-2xl flex items-center flex-col justify-center gap-7 ">
                     <div className="flex flex-col items-center gap-1">
                       <FiHeart />
-                      <h1 className="text-sm">{reel.duration}</h1>
+                      <h1 className="text-sm">{like}</h1>
                     </div>
                     <div className="flex flex-col items-center gap-1">
                       <BiMessageRounded />

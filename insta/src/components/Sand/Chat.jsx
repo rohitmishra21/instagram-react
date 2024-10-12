@@ -30,7 +30,7 @@ const Chat = ({ closeChat }) => {
   }
 
   return (
-    <div className="h-[95%]">
+    <div className="h-[95%] bg-blue-50">
       <div className="flex items-center shadow-sm bg-white shadow-black/40 justify-between">
         <div className="p-3 text-xl gap-4 items-center flex">
           <LuMoveLeft size={20} className="cursor-pointer" onClick={backChat} />
@@ -42,24 +42,24 @@ const Chat = ({ closeChat }) => {
         </div>
       </div>
 
-      <div className="h-[92%] overflow-auto  px-3 flex-col overflow-y-auto flex justify-end gap-3 items-end">
+      <div className="inner h-[82%]  overflow-y-auto  ">
         {data.map((item, index) => (
-          <div key={index} className="w-full">
+          <div key={index} className="w-full  px-3 flex-col  flex  gap-2 items-end">
             <div className="flex justify-end">
               <div className="w-fit  text-end rounded-md">
-                <h1 className="capitalize rounded-md bg-[#D7E8CD] px-3">
+                <h1 className="capitalize rounded-md bg-[#D7E8CD]  mt-2 px-3">
                   You: {item.prompt}
                 </h1>
               </div>
             </div>
 
-            <div className="flex justify-start mt-5 ">
-              <div className="rounded-md w-fit">
-                {loader && index === data.length - 1 ? (
-                  <h1>Typing...</h1>
+            <div className="flex justify-start ">
+              <div className="rounded-md  w-full">
+                {loader? (
+                  <h1 className="text-start">Typing...</h1>
                 ) : (
                   <div className="w-fit pr-12 ">
-                    <h1 className="bg-[#E3ECDD] rounded-md capitalize  px-3">
+                    <h1 className="bg-[#E3ECDD] rounded-md  capitalize  px-3">
                       User: {item.response}
                     </h1>
                   </div>
@@ -68,16 +68,18 @@ const Chat = ({ closeChat }) => {
             </div>
           </div>
         ))}
-        <div className="w-full pb-3  flex items-center gap-2">
+   
+     
+      </div>
+      <div className="w-full pb-3 px-3  mt-2  flex items-center gap-2">
           <input
             type="text"
-            className="w-full border-none outline-none h-9 bg-[#E3ECDD]"
+            className="w-full border-2 border-black outline-none rounded-xl h-9 bg-[#d5dcd0]"
             onChange={(e) => setMyInput(e.target.value)}
             value={myInput}
           />
           <IoMdSend size={30} onClick={onSent} className="cursor-pointer" />
         </div>
-      </div>
     </div>
   );
 };

@@ -49,7 +49,7 @@ const Search = () => {
 
   function showreel(dets) {
     setshowHiddenDiv(false);
-    setmyreel(searchReel[dets.target.id].video_files[3].link);
+    setmyreel(searchReel[dets.target.id]);
 
     // setTimeout(() => {
     //   setshowHiddenDiv(true)
@@ -58,20 +58,29 @@ const Search = () => {
 
 
   
+  function keyData(e) {
+       console.log(e);
+       
+  }
+
+   
+  
   return (
     <div className="h-[95%] ">
       {showHiddenDiv ? (
-        <div className="h-[10%]  flex items-center rounded-md">
-          <BsSearch
-            onClick={fetchData}
-            className="bg-[#eef2ebb1] opacity-80  cursor-pointer rounded-l-md h-9 w-5"
-          />
+        <div className="h-[10%] p-3  flex items-center rounded-md">
+      
           <input
             type="text"
             onChange={valueChange}
             placeholder="search reels"
             className="h-9 w-full rounded-r-md bg-[#eef2ebb1] border-none outline-none px-3"
           />
+              <BsSearch
+            onClick={fetchData}
+            onKeyUp={keyData}
+            className="bg-[#eef2ebb1] opacity-80  cursor-pointer rounded-r-md h-9 w-5"
+             />
         </div>
       ) : null}
 
@@ -120,7 +129,7 @@ const Search = () => {
                   autoPlay
                   muted
                   loop
-                  src={myreel}
+                  src={myreel.video_files[3].link}
                 ></video>
                 <h1>reel name</h1>
                 <div className="overlay w-full h-full text-white flex items-end justify-end top-0  absolute">
@@ -131,10 +140,10 @@ const Search = () => {
                           className="w-full object-cover object-top h-full"
                           muted
                           loop
-                          src={myreel}
+                          src={myreel.video_files[3].link}
                         ></video>
                       </div>
-                      <h1>name</h1>
+                      <h1>{myreel.user.name}</h1>
                       <button className="border-2 border-white/60 px-3 rounded-md text-white font-semibold text-xs py-1">
                         Follow
                       </button>
@@ -180,10 +189,10 @@ const Search = () => {
                               className="w-full object-cover object-top h-full"
                               muted
                               loop
-                              src={reel.video_files[1].link}
+                              src={reel.video_files[0].link}
                             ></video>
                           </div>
-                          <h1>name</h1>
+                          <h1>{reel.user.name}</h1>
                           <button className="border-2 border-white/60 px-3 rounded-md text-white font-semibold text-xs py-1">
                             Follow
                           </button>

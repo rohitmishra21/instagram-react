@@ -105,6 +105,8 @@ const Profile = () => {
     }, 3000);
   };
 
+
+  
   
 
   return (
@@ -188,7 +190,7 @@ const Profile = () => {
           display: show ? "block" : "none",
         }}
       >
-        <div className="myStory  w-full h-full  top-0 left-0  absolute">
+        <div className="myStory bg-white z-40  w-full h-full  top-0 left-0  absolute">
           <div className="absolute flex flex-col justify-between w-full p-2">
             <div
               className="loader ease-linear duration-300 transition-all  h-0.5 my-2 bg-black/20"
